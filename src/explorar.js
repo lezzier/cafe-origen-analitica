@@ -1,4 +1,5 @@
 const { ventas } = require ('./datos');
+const {totalVendido, unidadesVendidas, ventaMayor} = require ("./analitica");
 
 console.log('Cantidad de registros:', ventas.length);
 
@@ -12,3 +13,15 @@ console.log('\nProducto del registro en la posicion 4:', ventas[4].producto);
 
 console.log('\nTabla completa:');
 console.table(ventas);
+
+console.log('\nTotal vendido:');
+console.log(totalVendido(ventas));
+
+console.log('\nTotal vendido:');
+
+console.log(unidadesVendidas(ventas));
+console.log("---------------------------------------");
+
+console.log(ventaMayor(ventas));
+
+
