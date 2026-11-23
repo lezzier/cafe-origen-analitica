@@ -1,27 +1,37 @@
-const { ventas } = require ('./datos');
-const {totalVendido, unidadesVendidas, ventaMayor} = require ("./analitica");
+const { sales } = require ('./datos');
+const {totalSold, unitsSold, highestValueSale, averageTicket, salesByCity} = require ("./analitica");
 
-console.log('Cantidad de registros:', ventas.length);
+console.log('Number of records:', sales.length);
 
-console.log('\nPrimer registro:');
-console.log(ventas[0]);
+console.log('\nFirst record:');
+console.log(sales[0]);
 
-console.log('\nÚltimo registro:');
-console.log(ventas[ventas.length - 1]);
+console.log('\nLast record:');
+console.log(sales[sales.length - 1]);
 
-console.log('\nProducto del registro en la posicion 4:', ventas[4].producto);
+console.log('\nProduct in record 4:', sales[4].product);
 
-console.log('\nTabla completa:');
-console.table(ventas);
+console.log('\nFull table:');
+console.table(sales);
 
-console.log('\nTotal vendido:');
-console.log(totalVendido(ventas));
+console.table('\nSale value:');
+console.table(saleValue(sales));
 
-console.log('\nTotal vendido:');
+console.log('\nTotal sold:');
+console.log(totalSold(sales));
 
-console.log(unidadesVendidas(ventas));
-console.log("---------------------------------------");
+console.log('\nUnits sold:');
+console.log(unitsSold(sales));
 
-console.log(ventaMayor(ventas));
+console.log('\nHighest-value sale:');
+console.log(highestValueSale(sales))
+
+console.log('\nAverage ticket:');
+console.log(averageTicket(sales))
+
+console.log('\nTotal sold in Medellín:');
+console.log(salesByCity(sales, "medellín"))
+
+
 
 
