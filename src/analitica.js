@@ -39,6 +39,7 @@ function averageTicket(sales) {
             count++;
         }
     }
+    if (count == 0) {return 0};
     let average = totalSold(sales) / count;
     return Math.floor(average);
 };
@@ -55,6 +56,7 @@ function salesByCity(sales, city) {
 };
 
 module.exports = {
+saleValue,
 totalSold, 
 unitsSold, 
 highestValueSale, 

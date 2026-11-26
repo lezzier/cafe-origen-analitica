@@ -69,20 +69,18 @@ No necesita un ciclo porque calcula el valor de un solo registro.
 2. Recorrer cada venta con `for...of`.
 3. Comparar `saleValue(currentSale)` con `total`.
 4. Si es mayor, actualizar `total` y guardar el objeto en `sale`.
-5. Devolver **el objeto `sale` directamente**, o `null` si no se encontró ninguna venta.
+5. Devolver `{total, sale}` con el monto y el registro completo. Si el arreglo está vacío, `total` conserva `0` y `sale` conserva `null`.
 
-**Pendiente en el código entregado:** actualmente esta función devuelve `{total, sale}`. El reto exige devolver el registro directamente.
+**Formato elegido:** el registro completo se entrega dentro de `sale`, acompañado de su monto en `total`.
 
 #### 5. `averageTicket(sales)` — ticket promedio (contador y acumulador)
 
 1. Iniciar `count = 0`.
 2. Recorrer cada venta con `for...of`.
 3. Si la cantidad es mayor que cero, aumentar `count` en 1.
-4. Calcular el total vendido mediante `totalSold(sales)`.
-5. Si `count` es cero, devolver `0` para evitar una división por cero.
-6. De lo contrario, dividir el total vendido entre `count` y devolver el resultado. Mi implementación actual utiliza `Math.floor()` para quitar la parte decimal.
-
-**Pendiente en el código entregado:** todavía falta comprobar `count === 0` antes de dividir; actualmente con un arreglo vacío produce `NaN`.
+4. Al terminar el recorrido, si `count` es cero, devolver `0` para evitar una división por cero.
+5. Calcular el total vendido mediante `totalSold(sales)` y dividirlo entre `count`.
+6. Aplicar `Math.floor()` al cociente para devolver el ticket en pesos enteros.
 
 #### 6. `salesByCity(sales, city)` — ventas de una ciudad (condicional y acumulador)
 
@@ -154,24 +152,27 @@ El acumulador `totalUnits` empieza en `0`.
 |---|---|
 | `totalSold([])` | Devolver `0`. |
 | `unitsSold([])` | Devolver `0`. |
-| `highestValueSale([])` | Devolver `null`, porque no existe un registro máximo. |
+| `highestValueSale([])` | Devuelve `{ total: 0, sale: null }`, como se comprobó en consola. |
 | `averageTicket([])` | Devolver `0`, sin dividir entre cero. |
 | `salesByCity([], "Medellín")` | Devolver `0`, porque no hay ventas de esa ciudad. |
 
 La función `saleValue(sale)` recibe un objeto individual, no un arreglo. Por eso se prueba con un registro válido, no con `[]`.
 
-### Pruebas que debo completar antes de entregar
+### Pruebas realizadas
 
-El reto solicita probar cada indicador con el arreglo completo, uno de un solo registro y uno vacío. La muestra completa ya produce los valores indicados arriba. Para el arreglo de un solo registro puedo usar `const oneSale = [sales[0]]`: su valor vendido es $84.000, sus unidades son 2, la venta mayor debe ser el registro `id: 1`, el ticket es $84.000 y Medellín suma $84.000. Con el arreglo vacío deben aplicarse las decisiones de la tabla anterior.
+Probé los indicadores con la muestra completa, un arreglo que contiene solo la primera venta (`id: 1`) y un arreglo vacío.
 
-**Pendientes por verificar después de corregir el código:**
+| Indicador | Muestra completa | Primera venta | Arreglo vacío |
+|---|---|---|---|
+| `totalSold` | 985.000 COP | 84.000 COP | 0 COP |
+| `unitsSold` | 21 unidades | 2 unidades | 0 unidades |
+| `highestValueSale` | `total: 168000` y registro `id: 10` en `sale` | `total: 84000` y registro `id: 1` en `sale` | `{ total: 0, sale: null }` |
+| `averageTicket` | 89.545 COP | 84.000 COP | 0 COP |
+| `salesByCity` para Medellín | 356.000 COP | 84.000 COP | 0 COP |
 
-- [ ] Hacer que `highestValueSale()` devuelva solo el objeto o `null`.
-- [ ] Hacer que `averageTicket()` devuelva `0` cuando no existan ventas válidas.
-- [ ] Exportar también `saleValue()`.
-- [ ] Confirmar si deben renombrarse funciones, variables y propiedades al español para cumplir literalmente el enunciado.
-- [ ] Ejecutar y comprobar las pruebas de arreglo completo, un elemento y arreglo vacío.
-- [ ] Guardar los cambios, hacer commit y push al repositorio público.
+`saleValue` está exportada y se probó con el objeto de la primera venta. El resultado fue 84.000 COP.
+
+Conservé los nombres de las funciones en inglés. Los nombres del enunciado, en el mismo orden en que se presentan en el pseudocódigo, son `valorVenta`, `totalVendido`, `unidadesVendidas`, `ventaMayor`, `ticketPromedio` y `ventasPorCiudad`.
 
 ## Conclusión
 

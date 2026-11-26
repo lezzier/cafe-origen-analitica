@@ -1,5 +1,12 @@
 const { sales } = require ('./datos');
-const {totalSold, unitsSold, highestValueSale, averageTicket, salesByCity} = require ("./analitica");
+const {
+saleValue, 
+totalSold, 
+unitsSold, 
+highestValueSale, 
+averageTicket, 
+salesByCity
+} = require ("./analitica");
 
 console.log('Number of records:', sales.length);
 
@@ -15,7 +22,7 @@ console.log('\nFull table:');
 console.table(sales);
 
 console.table('\nSale value:');
-console.table(saleValue(sales));
+console.table(saleValue(sales[0]));
 
 console.log('\nTotal sold:');
 console.log(totalSold(sales));
@@ -24,14 +31,10 @@ console.log('\nUnits sold:');
 console.log(unitsSold(sales));
 
 console.log('\nHighest-value sale:');
-console.log(highestValueSale(sales))
+console.log(highestValueSale(sales));
 
 console.log('\nAverage ticket:');
-console.log(averageTicket(sales))
+console.log(averageTicket(sales));
 
 console.log('\nTotal sold in Medellín:');
-console.log(salesByCity(sales, "medellín"))
-
-
-
-
+console.log(salesByCity(sales, "medellín"));
